@@ -72,11 +72,8 @@ Weston SDK files
 #%patch1 -p1
 
 %build
-if [ ! -e configure ]; then
-	NOCONFIGURE=1 ./autogen.sh;
-fi;
-%configure --help
-%configure --disable-static \
+%reconfigure \
+           --disable-static \
            --enable-tablet-shell \
            --enable-xwayland \
            --enable-x11-compositor \
