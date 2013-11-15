@@ -1,0 +1,3 @@
+[submodule "weston"]
+	path = weston
+	url = git://anongit.freedesktop.org/wayland/weston
