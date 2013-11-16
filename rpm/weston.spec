@@ -7,7 +7,7 @@ License:        MIT
 Group:          System/GUI/Other
 Url:            http://weston.freedesktop.org/
 Source:         %name-%version.tar.xz
-#Patch1:         weston-client-simple-egl-buffer-age-ext.patch
+Patch1:         000_simple_clients_programs_LDADD.patch
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(expat)
 BuildRequires:  libjpeg-devel
@@ -27,7 +27,7 @@ BuildRequires:  pkgconfig(gio-2.0)
 #BuildRequires:  gfx-rpi-libGLESv2-devel
 BuildRequires:  pkgconfig(glesv2)
 BuildRequires:  pkgconfig(glib-2.0)
-#BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(lcms2)
 BuildRequires:  pkgconfig(gobject-2.0)
 BuildRequires:  pkgconfig(libdrm) >= 2.4.30
 BuildRequires:  pkgconfig(libffi)
@@ -69,9 +69,10 @@ Weston SDK files
 
 %prep
 %setup -q
-#%patch1 -p1
+%patch1 -p1
 
 %build
+cd weston
 %reconfigure \
            --disable-static \
            --enable-tablet-shell \
@@ -88,11 +89,13 @@ Weston SDK files
            --enable-simple-clients \
            --enable-simple-egl-clients \
            --enable-clients \
+           --enable-demo-clients=yes \
            --disable-colord \
            --disable-setuid-install
 make %{?_smp_mflags};
 
 %install
+cd weston
 make install DESTDIR="%buildroot";
 rm -f "%buildroot/%_libdir"/*.la "%buildroot/%_libdir/weston"/*.la;
 

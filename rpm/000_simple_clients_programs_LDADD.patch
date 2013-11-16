@@ -1,0 +1,12 @@
+diff -ru weston-1.3.0+master.2.25903cb/weston/clients/Makefile.am b/weston/clients/Makefile.am
+--- weston-1.3.0+master.2.25903cb/weston/clients/Makefile.am	2013-11-17 00:32:59.000000000 +1100
++++ b/weston/clients/Makefile.am	2013-11-17 01:47:58.000000000 +1100
+@@ -51,7 +51,7 @@
+ 	../shared/os-compatibility.c			\
+ 	../shared/os-compatibility.h
+ weston_multi_resource_CPPFLAGS = $(SIMPLE_CLIENT_CFLAGS)
+-weston_multi_resource_LDADD = $(SIMPLE_CLIENT_LIBS) -lm
++weston_multi_resource_LDADD = $(SIMPLE_CLIENT_LIBS) -lrt -lm
+ endif
+ 
+ if BUILD_SIMPLE_EGL_CLIENTS
